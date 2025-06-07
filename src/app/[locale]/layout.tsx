@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { PostHogProvider } from '@/components/analytics/PostHogProvider';
-import { routing } from '@/libs/i18nRouting';
 import '@/styles/global.css';
 
 export const metadata: Metadata = {
@@ -11,13 +9,13 @@ export const metadata: Metadata = {
     {
       rel: 'icon',
       type: 'image/svg+xml',
-      url: '/assets/images/logo.svg', // 路径与你 public 文件夹一致
-    },
+      url: '/logo.svg', // favicon
+    }
   ],
 };
 
 export function generateStaticParams() {
-  return routing.locales.map(locale => ({ locale }));
+  return [{ locale: 'zh' }]; // 只用中文可简化，支持多语言再扩展
 }
 
 export default async function RootLayout(props: {
@@ -26,7 +24,7 @@ export default async function RootLayout(props: {
 }) {
   const { locale } = await props.params;
 
-  if (!hasLocale(routing.locales, locale)) {
+  if (!hasLocale(['zh'], locale)) {
     notFound();
   }
 
@@ -36,9 +34,7 @@ export default async function RootLayout(props: {
     <html lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <PostHogProvider>
-            {props.children}
-          </PostHogProvider>
+          {props.children}
         </NextIntlClientProvider>
       </body>
     </html>
