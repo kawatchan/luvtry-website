@@ -54,7 +54,7 @@ export default function Home() {
           color: '#888',
         }}
       >
-        这里是 LUVCREATE 极简个人网站首页 xuhui晚上好
+        这里是 LUVTRY乐创工作室
       </div>
     </div>
   );
