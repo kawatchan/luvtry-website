@@ -1,16 +1,26 @@
-export const BaseTemplate = (props: {
-  leftNav: React.ReactNode;
-  rightNav?: React.ReactNode;
-  children: React.ReactNode;
-}) => {
+// 文件：src/app/[locale]/layout.tsx
+import { ReactNode } from 'react'
+import { BaseTemplate } from '@/components/BaseTemplate'
+
+interface LayoutProps {
+  children: ReactNode;
+  params: {
+    locale: string;
+  };
+}
+
+export default function LocaleLayout({
+  children,
+  params,
+}: LayoutProps): JSX.Element {
   return (
-    <div className="w-full px-1 text-gray-700 antialiased">
-      <div className="mx-auto max-w-screen-md">
-        <main>{props.children}</main>
-        <footer className="border-t border-gray-300 py-8 text-center text-sm">
-          © Copyright 2025 LUVTRY Design Studio.
-        </footer>
-      </div>
-    </div>
-  );
-};
+    <html lang={params.locale}>
+      <body>
+        {/* leftNav 和 rightNav 这里都传 null，就不会渲染任何导航 */}
+        <BaseTemplate leftNav={null} rightNav={null}>
+          {children}
+        </BaseTemplate>
+      </body>
+    </html>
+  )
+}
