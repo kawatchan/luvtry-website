@@ -1,4 +1,18 @@
-import Link from 'next/link';
+'use client';
+
+import Image from 'next/image';
+
+// 假设你有8张图片: public/images/1.png ... public/images/8.png
+const images = [
+  '/images/1.png',
+  '/images/2.png',
+  '/images/3.png',
+  '/images/4.png',
+  '/images/5.png',
+  '/images/6.png',
+  '/images/7.png',
+  '/images/8.png',
+];
 
 export default function Home() {
   return (
@@ -8,53 +22,51 @@ export default function Home() {
         minHeight: '100vh',
         fontFamily: 'Helvetica, Arial, sans-serif',
         color: '#111',
+        maxWidth: 1200,
+        margin: '0 auto',
+        padding: '40px 0 40px 0',
       }}
     >
-      {/* 顶部栏 */}
+      {/* 顶部LOGO与菜单 */}
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '40px 60px 20px 60px',
+          padding: '0 32px 40px 32px',
         }}
       >
-        {/* 左上角LOGO文字 */}
-        <div style={{ fontWeight: 'bold', fontSize: 32, letterSpacing: 1.5 }}>
-          LUVTRY STUDIO
-        </div>
-        {/* 右上角导航栏 */}
-        <nav style={{ display: 'flex', gap: 40, fontSize: 18 }}>
-          <Link href="/work" style={{ color: '#111', textDecoration: 'none' }}>
-            cOJOh
-          </Link>
-          <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>
-            studio
-          </Link>
-          <Link href="/sketches" style={{ color: '#888', textDecoration: 'none' }}>
-            product
-          </Link>
-          <Link href="/instagram" style={{ color: '#888', textDecoration: 'none' }}>
-            instagram
-          </Link>
-          <Link href="/store" style={{ color: '#888', textDecoration: 'none' }}>
-            store
-          </Link>
-          <Link href="/cart" style={{ color: '#888', textDecoration: 'none' }}>
-            cart
-          </Link>
-        </nav>
+        {/* LOGO（SVG） */}
+        <Image src="/logo.svg" alt="logo" width={170} height={40} priority />
+
+        {/* 简单菜单，SVG三道杠 */}
+        <svg width="32" height="32" viewBox="0 0 32 32">
+          <rect x="4" y="9" width="24" height="2" fill="#111" />
+          <rect x="4" y="15" width="24" height="2" fill="#111" />
+          <rect x="4" y="21" width="24" height="2" fill="#111" />
+        </svg>
       </div>
-      {/* 中部大字提示 */}
+
+      {/* 响应式图片网格 */}
       <div
         style={{
-          marginTop: 80,
-          textAlign: 'center',
-          fontSize: 28,
-          color: '#888',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: 32,
+          padding: '0 32px',
         }}
       >
-        这里是 LUVTRY乐创工作室
+        {images.map((src, i) => (
+          <div key={i} style={{ width: '100%', aspectRatio: '1/1', position: 'relative', background: '#f8f8f8' }}>
+            <Image
+              src={src}
+              alt={`work-${i + 1}`}
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 600px) 100vw, 33vw"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
