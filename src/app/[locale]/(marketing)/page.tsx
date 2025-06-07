@@ -1,6 +1,3 @@
-// 这是你的首页极简风格代码，只需粘贴到 /pages/index.tsx
-import Image from 'next/image';
-
 export default function Home() {
   return (
     <div style={{
@@ -30,26 +27,15 @@ export default function Home() {
           <a href="#" style={{color: '#888', textDecoration: 'none'}}>cart</a>
         </nav>
       </div>
-      {/* 横排大图片 */}
+      {/* 中部大字提示 */}
       <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: 32,
-        marginTop: 32
+        marginTop: 80,
+        textAlign: 'center',
+        fontSize: 28,
+        color: '#888'
       }}>
-        {/* 图片1 */}
-        <div style={{width: 320, height: 320, background: '#eee', borderRadius: 12, overflow: 'hidden'}}>
-          {/* 这里可以换成你的作品图片 */}
-          <Image src="/sample1.jpg" alt="作品1" width={320} height={320} />
-        </div>
-        {/* 图片2 */}
-        <div style={{width: 320, height: 320, background: '#eee', borderRadius: 12, overflow: 'hidden'}}>
-          <Image src="/sample2.jpg" alt="作品2" width={320} height={320} />
-        </div>
-        {/* 图片3 */}
-        <div style={{width: 320, height: 320, background: '#eee', borderRadius: 12, overflow: 'hidden'}}>
-          <Image src="/sample3.jpg" alt="作品3" width={320} height={320} />
-        </div>
+        这里是 LUVCREATE 极简个人网站首页<br/>
+        （你看到这个，说明页面已生效！）
       </div>
     </div>
   );
