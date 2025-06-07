@@ -1,72 +1,40 @@
-'use client';
-
-import Image from 'next/image';
-
-// 假设你有8张图片: public/images/1.png ... public/images/8.png
-const images = [
-  '/images/1.png',
-  '/images/2.png',
-  '/images/3.png',
-  '/images/4.png',
-  '/images/5.png',
-  '/images/6.png',
-  '/images/7.png',
-  '/images/8.png',
-];
-
+// src/app/[locale]/(marketing)/page.tsx
 export default function Home() {
+  // 9宫格图片数据，可以扩展
+  const images = [
+    '/assets/images/1.png',
+    '/assets/images/2.png',
+    '/assets/images/3.png',
+    '/assets/images/4.png',
+    '/assets/images/5.png',
+    '/assets/images/6.png',
+    '/assets/images/7.png',
+    '/assets/images/8.png',
+    '/assets/images/9.png',
+  ];
+
   return (
-    <div
-      style={{
-        background: '#fff',
-        minHeight: '100vh',
-        fontFamily: 'Helvetica, Arial, sans-serif',
-        color: '#111',
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '40px 0 40px 0',
-      }}
-    >
-      {/* 顶部LOGO与菜单 */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 32px 40px 32px',
-        }}
-      >
-        {/* LOGO（SVG） */}
-        <Image src="/logo.svg" alt="logo" width={170} height={40} priority />
-
-        {/* 简单菜单，SVG三道杠 */}
-        <svg width="32" height="32" viewBox="0 0 32 32">
-          <rect x="4" y="9" width="24" height="2" fill="#111" />
-          <rect x="4" y="15" width="24" height="2" fill="#111" />
-          <rect x="4" y="21" width="24" height="2" fill="#111" />
-        </svg>
-      </div>
-
-      {/* 响应式图片网格 */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: 32,
-          padding: '0 32px',
-        }}
-      >
-        {images.map((src, i) => (
-          <div key={i} style={{ width: '100%', aspectRatio: '1/1', position: 'relative', background: '#f8f8f8' }}>
-            <Image
-              src={src}
-              alt={`work-${i + 1}`}
-              fill
-              style={{ objectFit: 'cover' }}
-              sizes="(max-width: 600px) 100vw, 33vw"
-            />
+    <div className="w-screen min-h-screen bg-[#f5f6fa] flex justify-center items-center">
+      <div className="w-full max-w-5xl bg-white p-6 md:p-12 rounded-xl shadow-xl">
+        {/* 顶部 */}
+        <div className="flex justify-between items-center mb-8">
+          {/* LOGO */}
+          <img src="/assets/images/logo.svg" alt="logo" className="h-10 w-auto" />
+          {/* 菜单图标 */}
+          <div className="w-8 h-8 flex flex-col justify-center items-center cursor-pointer">
+            <span className="block w-6 h-0.5 bg-black my-0.5"></span>
+            <span className="block w-6 h-0.5 bg-black my-0.5"></span>
+            <span className="block w-6 h-0.5 bg-black my-0.5"></span>
           </div>
-        ))}
+        </div>
+        {/* 图片宫格 */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          {images.map((src, i) => (
+            <div key={i} className="aspect-square bg-gray-100 flex items-center justify-center overflow-hidden rounded-md">
+              <img src={src} alt={`img${i+1}`} className="object-cover w-full h-full" />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
