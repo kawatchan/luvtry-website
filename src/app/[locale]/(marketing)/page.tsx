@@ -21,18 +21,18 @@ export default function Home() {
       >
         {/* 左上角LOGO文字 */}
         <div style={{ fontWeight: 'bold', fontSize: 32, letterSpacing: 1.5 }}>
-          LUVCREATE
+          LUVTRY STUDIO
         </div>
         {/* 右上角导航栏 */}
         <nav style={{ display: 'flex', gap: 40, fontSize: 18 }}>
           <Link href="/work" style={{ color: '#111', textDecoration: 'none' }}>
-            work
+            cOJOh
           </Link>
           <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>
-            about
+            studio
           </Link>
           <Link href="/sketches" style={{ color: '#888', textDecoration: 'none' }}>
-            sketches
+            product
           </Link>
           <Link href="/instagram" style={{ color: '#888', textDecoration: 'none' }}>
             instagram
@@ -54,7 +54,7 @@ export default function Home() {
           color: '#888',
         }}
       >
-        这里是 LUVCREATE 极简个人网站首页
+        这里是 LUVCREATE 极简个人网站首页 xuhui晚上好
       </div>
     </div>
   );
